@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <%= favicon_link_tag asset_path('icone.png') %>
+    <title>SYSAGRO</title>
+    <link rel="manifest" href="<%= get_manifest %>">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="SYSAGRO">
+    
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <style>
+    
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: linear-gradient(135deg, #e8e6e6 0%, #dad8d8 100%);
+    font-family: 'Inter', sans-serif;
+}
+
+.container-fluid{
+    background: linear-gradient(135deg, #e8e6e6 0%, #dad8d8 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.content {
+    border-radius: 24px;
+    background-color: #FFFFFF;
+    padding: 60px 80px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+    max-width: 1100px;
+    width: 100%;
+}
+
+.row-principal {
+    display: flex;
+    flex-direction: row;
+}
+
+.img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.img-fluid {
+    width: 100%;
+    max-width: 380px;
+    margin-right: 60px;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.05));
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+
+.container {
+    width: auto;
+    margin-bottom: 35px;
+    padding: 0;
+}
+
+.cards {
+    gap: 12px;
+    margin-bottom: 20px;
+    justify-content: center;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.card-item {
+    flex: 0 0 auto;
+    max-width: 340px;
+    width: auto !important;
+}
+
+.card {
+    border: 2px solid transparent;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #f5f5f5 0%, #ececec 100%);
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 24px;
+    width: 180px !important;
+    min-height: 180px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(66, 156, 156, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.card:hover::before {
+    left: 100%;
+}
+
+.card:hover {
+    background: linear-gradient(135deg, #429C9C 0%, #368080 100%);
+    border-color: #429C9C;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(66, 156, 156, 0.25);
+}
+
+.card:hover .card-subtitle {
+    color: #ffffff;
+}
+
+.card:hover .img-card {
+    transform: scale(1.1);
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    width: 100%;
+}
+
+.card-subtitle {
+    font-weight: 600;
+    font-size: 14px;
+    color: #2d2d2d;
+    margin: 0;
+    margin-top: 16px;
+    letter-spacing: 0.3px;
+    transition: color 0.3s ease;
+    text-align: center;
+    line-height: 1.3;
+}
+
+.img-card {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+#img-teacher {
+    height: 80px;
+    width: 80px;
+}
+
+.form-floating {
+    position: relative;
+    margin-bottom: 24px;
+}
+
+.form-floating h4 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #2d2d2d;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+}
+
+.icon {
+    color: #429C9C;
+    font-size: 22px;
+    position: absolute;
+    left: 1.25rem;
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+
+#user {
+    top: calc(50% - 11px);
+}
+
+#lock {
+    top: calc(50% - 11px);
+}
+
+.form {
+    border-radius: 12px;
+    padding: 16px 16px 16px 3.5rem;
+    transition: all 0.3s ease;
+}
+
+#floatingEmail, #floatingPassword {
+    border: 2px solid #e8e8e8;
+    background-color: #f8f8f8;
+    font-size: 15px;
+    font-weight: 500;
+    color: #2d2d2d;
+    transition: all 0.3s ease;
+}
+
+#floatingEmail:focus, #floatingPassword:focus {
+    border-color: #429C9C;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 4px rgba(66, 156, 156, 0.1);
+    outline: none;
+}
+
+#floatingEmail:focus ~ .icon,
+#floatingPassword:focus ~ .icon {
+    color: #429C9C;
+    transform: scale(1.1);
+}
+
+::placeholder {
+    color: #9e9e9e;
+    font-weight: 500;
+    text-align: initial;
+    font-size: 14px;
+}
+
+.form-floating .form {
+    left: .5rem;
+}
+
+button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn {
+    background: linear-gradient(135deg, #429C9C 0%, #368080 100%);
+    border: none;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    padding: 16px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(66, 156, 156, 0.3);
+}
+
+.btn:hover {
+    background: linear-gradient(135deg, #368080 0%, #2d6a6a 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(66, 156, 156, 0.4);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.link {
+    text-align: center;
+    text-decoration: none;
+    color: #429C9C;
+    font-weight: 600;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.link:hover {
+    color: #368080;
+    text-decoration: underline;
+}
+
+.field-icon {
+    float: right;
+    margin-right: 16px;
+    margin-top: -42px;
+    position: relative;
+    z-index: 2;
+    cursor: pointer;
+    color: #9e9e9e;
+    transition: color 0.3s ease;
+}
+
+.field-icon:hover {
+    color: #429C9C;
+}
+
+#flash_alert {
+    color: #dc3545;
+    font-size: 14px;
+    margin: 16px 0;
+    padding: 12px;
+    background-color: #ffe5e5;
+    border-radius: 8px;
+    border-left: 4px solid #dc3545;
+}
+
+@media (max-width: 957px) {
+    .content {
+        padding: 50px;
+    }
+
+    .container {
+        padding: 20px;
+    }
+    
+    .img-fluid{
+       margin-right: 0px;
+    }
+}
+
+@media (max-width: 877px) {
+    .content {
+        padding: 40px;
+    }
+}
+
+@media (max-width: 857px) {
+    .content {
+        padding: 30px;
+    }
+}
+
+@media (max-width: 837px) {
+    .content {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 817px) {
+    .content {
+        padding: 19px;
+    }
+
+    .img-fluid {
+        width: 260px;
+        margin-right: 30px;
+        margin-left: 30px;
+    }
+}
+
+@media (max-width: 794px) {
+    .container {
+        padding: 10px;
+    }
+}
+
+@media (max-width: 794px) {
+    .container {
+        padding: 0px;
+    }
+}
+
+@media (max-width: 734px){
+    .row-principal {
+        flex-direction: column;
+    }
+
+    .img {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 40px;
+    }
+
+    .img-fluid {
+        max-width: 300px;
+        margin-right: 0;
+    }
+
+    .content {
+        padding: 40px 30px;
+    }
+
+    .card-item {
+        max-width: 130px;
+    }
+
+    .card {
+        padding: 16px 12px;
+        min-height: 120px;
+    }
+
+    .img-card {
+        width: 55px;
+        height: 55px;
+    }
+
+    #img-teacher {
+        width: 55px;
+        height: 55px;
+    }
+}
+
+@media (max-width: 501px){
+    .container-fluid {
+        padding: 20px;
+    }
+
+    .content {
+        padding: 30px 20px;
+        border-radius: 20px;
+    }
+
+    .img-fluid {
+        max-width: 240px;
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+    .form-floating h4 {
+        font-size: 24px;
+    }
+
+    .card-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        max-width: 110px;
+    }
+
+    .card {
+        padding: 14px 10px;
+        min-height: 110px;
+    }
+
+    .img-card {
+        width: 48px;
+        height: 48px;
+    }
+
+    #img-teacher {
+        width: 48px;
+        height: 48px;
+    }
+
+    .card-subtitle {
+        font-size: 11px;
+        margin-top: 8px;
+    }
+}
+
+@media (max-width: 301px){
+    .container-fluid {
+        padding: 30px;
+        margin-top: 80px;
+    }
+
+    .img-fluid {
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+    .card-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .cards {
+      
+    }
+  
+    .card-subtitle{
+        font-size: 11px;
+    }
+
+    .card {
+        max-width: 80px;
+    }
+
+
+}
+
+@media (max-width: 235px){
+    .container-fluid {
+        padding: 30px;
+        margin-top: 80px;
+    }
+
+    .img-fluid {
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+    .card-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .cards {
+        align: center;
+    }
+    .card {
+        width: 4rem;
+        margin-left: 10px;
+    }
+    .card-subtitle{
+        font-size: 9px;
+    }
+
+
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+</style>
+</head>
+
+<body>
+
+
+ <%= yield %>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+
+<script type="text/javascript">
+  /* imagem password */
+$(".toggle-password").click(function() {
+
+  $(this).toggleClass("fa-eye fa-eye-slash");
+  var input = $($(this).attr("toggle"));
+
+  if (input.attr("type") == "password") {
+    input.attr("type", "text");
+  } else {
+    input.attr("type", "password");
+  }
+
+});
+</script>
+</body>
+
+</html>

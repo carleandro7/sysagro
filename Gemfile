@@ -40,6 +40,29 @@ gem "thruster", require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
+# gem 'rails', '~> 6.1.3', '>= 6.1.3.2' # substituída por Rails 8
+# gem 'sass-rails', '>= 6' # verificar compatibilidade com Rails 8
+gem "turbolinks", "~> 5" # pode ser substituída por turbo-rails
+gem "devise"
+gem "audited"
+gem "cocoon"
+gem "kaminari"
+gem "caxlsx"
+gem "caxlsx_rails"
+gem "prawn"
+gem "prawn-table"
+gem "simple_calendar", "~> 2.4"
+gem "rails-i18n"
+gem "work_day"
+gem "activerecord-import"
+gem "jwt"
+gem "net-http"
+gem "apexcharts"
+# --- Fim das gems migradas ---
+#
+gem "request_store"
+gem "bootstrap-sass-extras"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
@@ -49,6 +72,9 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+
+  # Necessária para desenvolvimento (file watcher)
+  gem "listen"
 end
 
 group :development do
