@@ -91,7 +91,7 @@ GEM
       msgpack (~> 1.2)
     bootstrap-sass-extras (0.1.0)
       rails (>= 3.1.0)
-    brakeman (7.1.1)
+    brakeman (7.1.2)
       racc
     builder (3.3.0)
     caxlsx (4.4.1)
